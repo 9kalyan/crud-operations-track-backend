@@ -9,12 +9,13 @@ import com.google.firebase.cloud.FirestoreClient;
 import crud.firebaseconnect.init;
 import  crud.firebaseconnect.init;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 public class login {
     public static boolean loginok;
+    public static LocalTime localTime;
     public static boolean validateUserName(String username,String password) {
         try {
             Firestore firestore = init.fd;
@@ -24,7 +25,9 @@ public class login {
             for (QueryDocumentSnapshot document : documents) {
                 Map<String, Object> data = document.getData();
                 if (document.getId().equals(username) && data.get("password").equals(password)) {
+
                     return true;
+
                 }
 
             }
